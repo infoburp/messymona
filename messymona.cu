@@ -313,7 +313,7 @@ int main(int argc, char** argv) {
  
         srand(time(NULL));
  
-        cv::Mat reference = cv::imread("/home/peter/Desktop/image.png");
+        cv::Mat reference = cv::imread(argv[1]);
  
         uchar* dev_reference;
         cudaMalloc(&dev_reference, sizeof(uchar) * XSIZE * YSIZE * 3);
@@ -356,7 +356,8 @@ int main(int argc, char** argv) {
                         draw<<<grid_dim, block_dim>>>(dev_genome, dev_pixels, dev_intersections);
  
                         std::stringstream ss;
-                        ss << "/home/peter/Desktop/images/image";
+                        ss << argv[1];
+                        ss << ".generation"
                         ss << generation;
                         ss << ".png";
  
